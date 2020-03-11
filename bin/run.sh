@@ -30,17 +30,17 @@ APPSERVICECONFIGURABLELOGSPATH=$BASEPATH/appserviceconfigurable$TIMESTAMPFORMAT.
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	. $(dirname "$0")/setupSecurityserviceTest.sh
 	$(dirname "$0")/runSecurityserviceTest.sh
 	$(dirname "$0")/cleanSecurityserviceTest.sh
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 coreDataTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importCoreDataDump.sh
@@ -52,11 +52,11 @@ coreDataTest() {
 		./flushCoreDataDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 metaDataTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importMetaDataDumps.sh
@@ -68,11 +68,11 @@ metaDataTest() {
 		./flushMetaDataDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 commandTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importCommandDataDump.sh
@@ -84,11 +84,11 @@ commandTest() {
 		./flushCommandDataDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 loggingTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importLoggingDataDump.sh
@@ -100,11 +100,11 @@ loggingTest() {
 		./flushLoggingDataDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 supportNotificationTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importSupportNotificationDump.sh
@@ -116,19 +116,19 @@ supportNotificationTest() {
 		./flushSupportNotificationDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 systemManagementTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	./systemManagementTest.sh
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 supportSchedulerTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/importSupportSchedulerDump.sh
@@ -140,11 +140,11 @@ supportSchedulerTest() {
 		./flushSupportSchedulerDataDump.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 deviceVirtualTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		source ./security/deviceVirtualTest.sh
@@ -152,15 +152,15 @@ deviceVirtualTest() {
 		./deviceVirtualTest.sh
 	fi
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 appServiceConfigurableTest() {
-	pushd "$(dirname "$0")" >/dev/null
+	#pushd "$(dirname "$0")" >/dev/null
 	
 	./appServiceConfigurableTest.sh
 
-	popd >/dev/null
+	#popd >/dev/null
 }
 
 testAll() {
