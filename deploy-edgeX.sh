@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Copyright 2017 Konrad Zapalowicz <bergo.torino@gmail.com>
 #
@@ -25,7 +25,14 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
-if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
+# if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
+# 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
+# else
+# 	./sync.sh
+# 	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
+# fi
+
+if ["${COMPOSE_FILE_PATH}" = "true"]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
 	./sync.sh
@@ -33,7 +40,7 @@ else
 fi
 
 run_service () {
-	builtin echo -e "\033[0;32mStarting.. $1\033[0m"
+	echo -e "\033[0;32mStarting.. $1\033[0m"
   docker-compose -f $COMPOSE_FILE up -d $1
 }
 
@@ -100,44 +107,3 @@ run_service scheduler
 run_service system
 
 run_service device-virtual
-
-
-echo "------- volume ------"
-docker logs edgex-files
-echo "------- consul ------"
-docker logs edgex-core-consul
-echo "------- secrity-secrets-setup ------"
-docker logs edgex-secrets-setup
-echo "------- vault ------"
-docker logs edgex-vault
-echo "------- vault-worker ------"
-docker logs edgex-vault-worker
-echo "------- kong-db ------"
-docker logs kong-db
-echo "------- kong-migrations ------"
-docker logs kong-migrations
-echo "------- kong ------"
-docker logs kong
-echo "------- edgex-proxy ------"
-docker logs edgex-proxy
-echo "------- ${DATABASE} ------"
-docker logs edgex-${DATABASE}
-echo "------- logging ------"
-docker logs edgex-support-logging
-echo "------- data ------"
-docker logs edgex-core-data
-echo "------- notifications ------"
-docker logs edgex-support-notifications
-echo "------- metadata ------"
-docker logs edgex-core-metadata
-echo "------- command ------"
-docker logs edgex-core-command
-echo "------- scheduler ------"
-docker logs edgex-support-scheduler
-echo "------- edgex-sys-mgmt-agent ------"
-docker logs edgex-sys-mgmt-agent
-echo "------- device-virtual ------"
-docker logs edgex-device-virtual
-echo "------- app-service-rules ------"
-docker logs edgex-app-service-configurable-rules
-echo "---------------------------------------------------------"
