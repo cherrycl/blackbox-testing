@@ -35,7 +35,7 @@
 if ["${COMPOSE_FILE_PATH}" = "true"]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
-	./sync.sh
+	sh sync.sh
 	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
 fi
 
